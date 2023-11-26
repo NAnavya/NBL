@@ -1,0 +1,63 @@
+<p>student works!</p>
+<div class="container-fluid mb-5">
+    <h1>Student1 Enrollment Form</h1>
+    <form #studentForm="ngForm">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" #name="ngModel" class="form-control" required [class.is-invalid]="name.invalid&&name.touched" name="name" [(ngModel)]="studentModel.name"/> {{name.touched}}
+    <small  class="text-danger" [class.d-none]="name.valid||name.untouched">Name is required</small>
+    <div *ngIf="name.errors &&(name.invalid||name.touched)">
+     <small class="text-danger">Enter valid Name</small>
+    </div>
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" required #emailref="ngModel" [class.is-invalid]="emailref.invalid && emailref.touched" class="form-control" name="email" [(ngModel)]="studentModel.email" />
+        <small class="text-danger" [class.d-none]="emailref.valid || emailref.untouched">PhonEmail must required</small>
+    </div>
+    {{emailref.untouched}}
+    <div class="form-group">
+        <label>Phone Number</label>
+        <input type="number" #phoneref="ngModel" pattern="^\d{10}$" required [class.is-invalid]="phoneref.invalid&&phoneref.touched" class="form-control" name="number" [(ngModel)]="studentModel.number">
+  <div *ngIf="phoneref.errors && (phoneref.invalid || phoneref.touched)">
+     <small class="text-danger" *ngIf="phoneref.errors['required']">Phone number is required</small>
+     <small class="text-danger" *ngIf="phoneref.errors['pattern']">Phone number must be 10 digits</small>
+  </div>
+    </div>
+    <div class="form-group">
+        <select required #topic="ngModel" [class.is-invalid]="topic.invalid&&topic.touched" class="custom-class" name="topic" [(ngModel)]="studentModel.topic">
+            <option selected value="">I am interested in</option>
+            <option *ngFor="let topic of topics">{{topic}}</option>
+           
+            </select>
+            {{topic.value}}
+            <small class="text-danger" [class.d-none]="topic.valid||topic.untouched">Please select a topic</small> <!-- here  this error message works only if the select value is empty but in general we set the first option as selected and its value is default.So for that default case we have to done error validation as follows-->
+    </div>
+    <div class="form-group">
+        <select (change)="validateTopic(topic.value)" required #topic="ngModel" [class.is-invalid]="topic.invalid&&topic.touched&&topicHasErrors" class="custom-class" name="topic" [(ngModel)]="studentModel.topic">
+            <option selected value="default">I am interested in</option>
+            <option *ngFor="let topic of topics">{{topic}}</option>
+           
+            </select>
+            {{topicHasErrors}}
+            <small class="text-danger" [class.d-none]="(topic.untouched)||(!topicHasErrors)">Please select a topic</small>
+    </div>
+  <div class="mb-3">
+    <label>Time Prefrences</label>
+    <div class="form-check">
+        <input class="form-check-input" [(ngModel)]="studentModel.timepreferences" type="radio" name="timepreferences" value="morning">
+        <label class="form-check-label">Morning (9AM -12PM)</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" [(ngModel)]="studentModel.timepreferences" type="radio" name="timepreferences" value="evening">
+        <label class="form-check-label">Evening (5AM -8PM)</label>
+    </div>
+  </div>                                   
+  <div class="form-check mb-3">
+    <input class="form-check-input" name="check" [(ngModel)]="studentModel.check" type="checkbox">
+    <label class="form-check-label">Send response to mail</label>
+  </div>
+  <button class="btn btn-primary" type="button">Submit Form</button>
+</form>
+</div>

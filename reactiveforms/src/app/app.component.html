@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <h2 style="text-align: center;">Reactive Driven  form</h2>
+  <form [formGroup]="registrationForm">
+<div class="form-group">
+<label>userName</label>
+   <input formControlName="userName" type="text" class="form-control"> 
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input formControlName="password" type="password" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Confirm Password</label>
+    <input formControlName="confirmPassword" type="password" class="form-control">
+  </div>
+  <div formGroupName="address">
+    <div class="form-group">
+      <label>City</label>
+      <input formControlName="city" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>state</label>
+      <input formControlName="state" type="text" class="form-control" >
+     </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+  <div  style="display: flex; column-gap: 20px;align-items: flex-start;">
+  <button (click)="loadApiData()" class="btn btn-secondary ml-2">Load API Data</button>
+  <button type="reset"  class="btn btn-secondary">Reset</button>
+  {{registrationForm.value | json}}
+ </div>
+<app-form-buildercompo></app-form-buildercompo>
+  </div>

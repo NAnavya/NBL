@@ -1,0 +1,48 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": [
+    {
+      "name": "typicode"
+    }
+  ],
+  "student": [
+    {
+      "id": 1,
+      "name": "Navya",
+      "email": "n@gmail.com",
+      "number": 9898989898,
+      "topic": "Java",
+      "timepreferences": " Moring",
+      "check": true
+    },
+    {
+      "name": "Navya",
+      "email": "n@gmail.com",
+      "number": 2343498989,
+      "topic": "angular",
+      "timepreferences": "morning",
+      "check": true,
+      "id": 2
+    }
+  ],
+  "Images":[
+    {
+      "id":1,
+    "img":"jhgds"
+
+  }
+]
+}

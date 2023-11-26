@@ -1,0 +1,14 @@
+<p>details works!</p>
+<p>{{adminid}}</p>
+<a (click)="goPrevious()">Previous</a>
+<a (click)="goNext()">Next</a>
+<h3>{{adminData.name}}</h3>
+<h3>{{adminData.mail}}</h3>
+<h3>{{adminData.pass}}</h3>
+<button (click)="goToAdmin()">Back</button>
+<p>
+<button (click)="showchild1()">Child1</button>
+<button (click)="showchild2()">Child2</button>
+</p>
+
+<router-outlet></router-outlet>

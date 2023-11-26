@@ -1,0 +1,45 @@
+<p>student Data works!</p>
+<div class="container-fluid mb-5">
+    <h1>Student Enrollment Form</h1>
+    <form #studentForm="ngForm">
+        {{studentForm.value | json}}
+        <hr>
+        {{studentModel | json}}
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" #name class="form-control is-invalid" required  name="name" [(ngModel)]="studentModel.name"/>
+    </div>
+    {{name.className}}
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" required #emailref="ngModel" [class.is-invalid]="emailref.invalid && emailref.touched" class="form-control" name="email" [(ngModel)]="studentModel.email" />
+    </div>
+    {{emailref.untouched}}
+    <div class="form-group">
+        <label>Phone Number</label>
+        <input type="number" #phoneref="ngModel" pattern="^\d{10}$" required [class.is-invalid]="phoneref.invalid&&phoneref.touched" class="form-control" name="number" [(ngModel)]="studentModel.number">
+    </div>
+    <div class="form-group">
+        <select class="custom-class" name="topic" [(ngModel)]="studentModel.topic">
+            <option selected value="">I am interested in</option>
+            <option *ngFor="let topic of topics">{{topic}}</option>
+        </select>
+    </div>
+  <div class="mb-3">
+    <label>Time Prefrences</label>
+    <div class="form-check">
+        <input class="form-check-input" [(ngModel)]="studentModel.timepreferences" type="radio" name="timepreferences" value="morning">
+        <label class="form-check-label">Morning (9AM -12PM)</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" [(ngModel)]="studentModel.timepreferences" type="radio" name="timepreferences" value="evening">
+        <label class="form-check-label">Evening (5AM -8PM)</label>
+    </div>
+  </div>                                   
+  <div class="form-check mb-3">
+    <input class="form-check-input" name="check" [(ngModel)]="studentModel.check" type="checkbox">
+    <label class="form-check-label">Send response to mail</label>
+  </div>
+  <button class="btn btn-primary" type="button">Submit Form</button>
+</form>
+</div>

@@ -1,0 +1,17 @@
+<div>
+    <h3>Admin details</h3>
+    <div *ngFor="let admin of adminData">
+        <!-- <li>
+          {{admin.id}}
+        </li> -->
+        <nav>  
+           <ul class="items">
+        <li (click)="select(admin)" [class.selected]="isSelected(admin)">
+            <button>
+            {{admin.name}}
+        </button> 
+        </li>  
+    </ul>  
+    </nav>
+    </div>
+</div>

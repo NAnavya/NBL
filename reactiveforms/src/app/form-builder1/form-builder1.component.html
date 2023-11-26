@@ -1,0 +1,47 @@
+<p>form-builder1 works!</p>
+
+<div class="container-fluid">
+    <h2 style="text-align: center;">Reactive Driven  form with FormBuilder</h2>
+    <form [formGroup]="registrationForm">
+  <!--  Simple validation 
+    <div class="form-group">
+  <label>userName</label>
+  <input [class.is-invalid]="registrationForm.get('userName')?.invalid && registrationForm.get('userName')?.touched" formControlName="userName" type="text" class="form-control"> 
+  <small [class.d-none]="registrationForm.get('userName')?.valid || registrationForm.get('userName')?.untouched" class="text-danger">UserName is required</small>
+    </div> 
+  -->
+  <!--  Multiple Validations for single formfield-->
+    <div class="form-group">
+      <label>userName</label>
+      <input [class.is-invalid]="registrationForm.get('userName')?.invalid && registrationForm.get('userName')?.touched" formControlName="userName" type="text" class="form-control"> 
+     <div *ngIf="name?.invalid && name?.touched">
+      <small *ngIf="name?.errors?.['required']" class="text-danger">Name is required</small>
+      <small *ngIf="name?.errors?.['minlength']" class="text-danger">Name atleast 3 characters</small>
+      <small *ngIf="name?.errors?.['forbiddenName']" class="text-danger">{{name?.errors?.['forbiddenName'].value}} UserName not allowed</small>
+    </div>
+        </div>
+    <div class="form-group">
+      <label>Password {{password?.value}}</label>
+      <input  formControlName="password" [class.is-invalid]="password?.invalid && password?.touched" type="password" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Confirm Password</label>
+      <input [class.is-invalid]="registrationForm.errors?.['misMatch']" formControlName="confirmPassword" type="password" class="form-control">
+      <small class="text-danger" *ngIf="registrationForm.errors?.['misMatch']">Password doesnot match</small>
+    </div>
+    <div formGroupName="address">
+      <div class="form-group">
+        <label>City {{city?.value}}</label>
+        <input formControlName="city" [class.is-invalid]="city?.invalid && city?.touched" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>state</label>
+        <input formControlName="state" type="text" class="form-control" >
+       </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    {{registrationForm.value | json}}
+    <button (click)="loadApiData()" class="btn btn-secondary ml-2">Load API Data</button>
+    </div>
+  

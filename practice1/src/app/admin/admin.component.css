@@ -1,0 +1,5 @@
+.items li.selected {
+    background-color: aqua;
+    color: rgb(42, 59, 144);
+    font-size: large;
+}
